@@ -23,7 +23,7 @@ for (i in short_states) {
   }
   
   url = paste(michaels, i, "/", sep = "")
-  state_michaels_url = read_html()
+  state_michaels_url = read_html(url)
   
   city_names = state_michaels_url %>%
     html_nodes(".contentlist_item") %>%
@@ -33,8 +33,16 @@ for (i in short_states) {
   city_names = gsub("'", "-", city_names)
   
   for (j in city_names) {
-    print(paste(url, j, "/", sep = ""))
-    #city_michaels_url = read_html(paste(state_michaels_url, j, "/", sep = ""))
-    #print(city_michaels_url)
+    location_url = paste(url, j, "/", sep = "")
+    city_michaels_url = read_html(location_url)
+
+    locations = city_michaels_url %>%
+      html_nodes("#locations a") %>%
+      html_text()
+    
+    for (k in locations) {
+      print(k)
+    }
   }
 }
+
