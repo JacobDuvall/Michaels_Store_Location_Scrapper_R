@@ -41,7 +41,10 @@ for (i in short_states) {
       html_text()
     
     for (k in locations) {
-      print(k)
+      location_split = strsplit(k, ",")
+      for (z in location_split) {
+        print(z)
+      }
     }
   }
 }
